@@ -205,8 +205,7 @@ Visit our organization repositories to discover the components that match your n
 ### 🌐 Connect With the Community
 
 - **Discussions**: [GitHub Discussions](https://github.com/orgs/airsstack/discussions)
-- **Documentation**: [docs.airsstack.dev](https://docs.airsstack.dev/) *(coming soon)*
-- **Examples**: [examples.airsstack.dev](https://examples.airsstack.dev/) *(coming soon)*
+- **Documentation**: [AirsStack Repositories & Documentations](https://airsstack.github.io/)
 
 ------
 
