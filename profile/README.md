@@ -1,8 +1,8 @@
-# AirsStack - Personal AI Infrastructure
+# AirsStack - An Open-source AI Technology Stacks 
 
 **Building Blocks for Your AI-Powered Future**
 
-Welcome to AirsStack - an open-source organization dedicated to democratizing AI infrastructure through composable building blocks. We believe in AI sovereignty: you should own and control your AI tools, data, and workflows without vendor lock-in or privacy compromises.
+Welcome to AirsStack - an open-source organization dedicated to democratizing AI infrastructure and technology stacks through composable building blocks. We believe in AI sovereignty: you should own and control your AI tools, data, and workflows without vendor lock-in or privacy compromises.
 
 ## 🎯 Our Mission
 
