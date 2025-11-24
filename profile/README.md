@@ -1,88 +1,55 @@
-# 🚀 AirsStack - Own Your AI Future
+# 🦀 AirsStack
+### The Cohesive Rust-First AI Ecosystem
 
-**Privacy-First • Open Source • High Performance**
+**Privacy-First • High-Performance • Cohesive**
 
-Build AI applications that work for *you*, not against you. AirsStack provides composable building blocks that make AI development more accessible, reducing vendor lock-in and giving you more control over your data and workflows.
-
-**🎯 What can you build?**
-- Personal AI assistants
-- MCP Tools
-- Agent Services
-- Workflow or business automations
+AirsStack is a comprehensive ecosystem of Rust-native components designed to build, run, and manage the next generation of AI agents. We are solving the **fragmentation** and **performance bottlenecks** of the current AI landscape by providing a unified, high-performance stack.
 
 ---
 
-## 🎯 Our Vision
+## ⚡ The Mission: Why AirsStack?
 
-**"Empower everyone to build their own AI-powered applications and agents"**
+### 1. 🚀 Beyond Python's Limits
+While Python has served the AI community well, the next generation of AI agents requires **system-level performance**, **memory safety**, and **concurrency** that only Rust can provide. We are building the "Rust-First" foundation for production-grade AI.
 
-We provide the essential open-source components that enable individuals, teams, and organizations to create sophisticated AI systems tailored to their specific needs - from simple productivity tools to complex autonomous agents.
-
-## 🧭 Core Philosophy
-
-- **🤝 Human-AI Collaboration**: Human-driven architecture with AI-accelerated implementation
-- **🏠 AI Sovereignty**: More ownership and control of your AI infrastructure
-- **🔓 Open Source First**: Apache/MIT licensing ensuring freedom and flexibility
-- **🛡️ Privacy by Design**: Keep more of your data under your control
-- **🔧 Composable Components**: Building blocks, not black boxes
-- **⚡ Performance Focused**: Rust-first with support for multiple technology stacks
-
-## 🔄 Meta-Philosophy: AI Tools Built by AI
-
-We practice what we preach - our AI infrastructure components are themselves built using AI-assisted methodologies. This creates a powerful recursive approach:
-
-**🧠 Human-AI Collaboration**
-- Strategic architecture designed by humans
-- Implementation accelerated by AI
-- Continuous validation through both perspectives
-
-**🔁 Self-Improving Process**
-- AI tools become better by being built with AI assistance
-- Real-world experience informs better AI development tools
-- Methodology becomes part of what we offer the community
-
-**✨ Authentic Understanding**
-We deeply understand AI development challenges because we use AI to build AI tools. Our components solve real problems we've encountered in our own AI-assisted development.
+### 2. 🧩 Harmonizing the Fragmented Ecosystem
+Current AI engineering often involves stitching together disjointed libraries and tools. AirsStack provides a **Cohesive Ecosystem**—a structured set of composable layers designed to work seamlessly together, from the OS level up to the reasoning engine.
 
 ---
 
-## 💡 Why AirsStack?
+## 🗺️ The Ecosystem
 
-**🔒 More Control, Less Vendor Lock-in**
-Building personal AI infrastructure is challenging, but AirsStack makes it more accessible. Reduce dependence on external AI services and gain more control over your data and workflows.
+We organize our technology stack into 5 specialized pillars:
 
-**🛠️ Developer-First**
-Composable components, not black boxes. Use what you need, extend what you want, control what matters to you.
+### 1. 🎮 The Orchestrator: `airsstack`
+**"The Command Center"**
+The CLI tool that ties everything together. Use `airsstack` to manage your agents, configure your environment, and orchestrate your AI workflows.
+* *Coming Soon*
 
-**⚡ Performance & Safety**
-Built with performance and safety in mind, with Rust as our primary language while supporting integration with other technology stacks.
+### 2. 🔌 The Standards: `airsprotocol`
+**"The Nervous System"**
+Pure, high-performance Rust libraries for the protocols that power AI collaboration.
+- **Core MCP**: Model Context Protocol implementation.
+- **A2A**: Agent-to-Agent communication standards.
+- **Common Libs**: Shared utilities for the ecosystem.
 
----
+### 3. 🛠️ The Tools: `airsmcp`
+**"The Hands"**
+A collection of production-ready MCP servers to give your AI capabilities immediately.
+- **mcp-fs**: Secure, sandboxed filesystem access.
+- *(Growing library of specialized tools)*
 
-## 🛠️ Featured Components
+### 4. ⚙️ The Runtime: `airssys`
+**"The Foundation"**
+System-level components for secure execution.
+- **OS Layer**: Secure resource management.
+- **Actor Model**: High-concurrency runtime (Erlang-inspired).
+- **WASM**: Sandboxed plugin system.
 
-🔧 **Core Libraries** - Essential AI building blocks  
-🤖 **Agent Framework** - Build autonomous AI agents  
-📊 **Data Pipelines** - Privacy-first data processing  
-� **Model Runtime** - Local AI model execution  
-� **Integrations** - Connect with your favorite tools  
-
-*[Explore all components →](https://github.com/airsstack/airsstack)*
-
----
-
-## 🤝 Join the Community
-
-**🚀 Get Started**
-- [Main Repository](https://github.com/airsstack/airsstack) - Start building with AirsStack
-- [Documentation](https://airsstack.github.io/) - Guides, tutorials, and API docs
-- [Discussions](https://github.com/orgs/airsstack/discussions) - Community support and ideas
-
-**🎯 Quick Links**
-- 📖 [Getting Started Guide](https://airsstack.github.io/getting-started)
-- 💡 [Example Projects](https://github.com/airsstack/airsstack/tree/main/examples)
-- 🐛 [Report Issues](https://github.com/airsstack/airsstack/issues)
-- 💬 [Join Discussions](https://github.com/orgs/airsstack/discussions)
+### 5. 🧠 The Brain: `airsdsp`
+**"The Cognitive Engine"**
+A Rust implementation of the **Demonstrate-Search-Predict** framework, inspired by the groundbreaking work of [DSPy](https://dspy.ai/).
+- **Explicit Control**: Deterministic pipelines, not black boxes.
 
 ---
 
