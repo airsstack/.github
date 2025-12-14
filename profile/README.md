@@ -1,8 +1,8 @@
 # 🦀 AirsStack
 
-**Production AI Agent Platform • WASM-Portable • Actor-Based • Rust-Native**
+**Foundational Infrastructure for Knowledge Orchestration**
 
-AirsStack provides foundational infrastructure for building, deploying, and operating AI agents. The platform combines Erlang-inspired actor supervision, WebAssembly component isolation, and support for both private and commercial language models.
+AirsStack provides production-grade tools, libraries, and runtime infrastructure for building AI agent systems. The platform combines Erlang-inspired actor supervision, WebAssembly component isolation, spec-driven development methodology, and support for both private and commercial language models.
 
 ---
 
@@ -41,11 +41,6 @@ CLI tool for agent lifecycle management. Build, deploy, configure, and monitor a
 
 *Status: In Development*
 
-### [`airsspec`](https://github.com/airsstack/airsspec) - Agent Specification Format
-YAML-based declarative specifications for agent definition. Links to architectural decisions, compiles to WASM, version-controlled.
-
-*Status: Planned*
-
 ### [`airsprotocols`](https://github.com/airsstack/airsprotocols) - Protocol Implementations
 Production Rust implementations of agent communication protocols. Includes Model Context Protocol (MCP), OAuth2/API key authentication, and LLM provider abstraction layer.
 
@@ -73,7 +68,6 @@ Implementation of AWS AI-DLC (AI-Driven Development Lifecycle) framework. Struct
 ```
 ┌─────────────────────────────────────┐
 │  airsstack CLI                      │  Orchestration
-│  airsspec Specifications            │  Configuration
 └─────────────┬───────────────────────┘
               │
 ┌─────────────┴───────────────────────┐
