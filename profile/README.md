@@ -1,78 +1,130 @@
 # 🦀 AirsStack
-### The Cohesive Rust-First AI Ecosystem
 
-**Privacy-First • High-Performance • Cohesive**
+**Production AI Agent Platform • WASM-Portable • Actor-Based • Rust-Native**
 
-AirsStack is a comprehensive ecosystem of Rust-native components designed to build, run, and manage the next generation of AI agents. We are solving the **fragmentation** and **performance bottlenecks** of the current AI landscape by providing a unified, high-performance stack.
-
----
-
-## ⚡ The Mission: Why AirsStack?
-
-### 1. 🚀 Beyond Python's Limits
-While Python has served the AI community well, the next generation of AI agents requires **system-level performance**, **memory safety**, and **concurrency** that only Rust can provide. We are building the "Rust-First" foundation for production-grade AI.
-
-### 2. 🧩 Harmonizing the Fragmented Ecosystem
-Current AI engineering often involves stitching together disjointed libraries and tools. AirsStack provides a **Cohesive Ecosystem**—a structured set of composable layers designed to work seamlessly together, from the OS level up to the reasoning engine.
-
-### 3. 🧬 Meta-Development: AI Building AI
-AirsStack is not just *for* AI; it is built *by* AI. We employ a recursive **AI-Assisted Development** model:
-- **AI-First Workflow**: All libraries and tools are developed with heavy AI assistance, ensuring they are optimized for AI consumption.
-- **Recursive Evolution**: We use AirsStack components to build the next generation of AirsStack.
-- **Proven Ground**: Our tools are battle-tested by the very agents that build them.
+AirsStack provides foundational infrastructure for building, deploying, and operating AI agents. The platform combines Erlang-inspired actor supervision, WebAssembly component isolation, and support for both private and commercial language models.
 
 ---
 
-## 🗺️ The Ecosystem
+## 🎯 **What AirsStack Provides**
 
-We organize our technology stack into 5 specialized pillars:
+### Actor-Based Agent Runtime
+- Supervision trees for fault isolation and recovery
+- Lightweight actors with message-passing concurrency
+- Hot code swapping for zero-downtime updates
+- Built on patterns proven in Erlang/OTP systems
 
-### 1. 🎮 The Orchestrator: `airsstack`
-**"The Command Center"**
-The CLI tool that ties everything together. Use `airsstack` to manage your agents, configure your environment, and orchestrate your AI workflows.
-* *Coming Soon*
+### WASM Component Architecture
+- Universal binary format for agent components
+- Sandboxed execution with capability-based security
+- Write in Rust, Python, JavaScript—compile to WASM
+- Portable across cloud, on-premises, and edge deployments
 
-### 2. 🔌 The Standards: `airsprotocol`
-**"The Nervous System"**
-Pure, high-performance Rust libraries for the protocols that power AI collaboration.
-- **Core MCP**: Model Context Protocol implementation.
-- **A2A**: Agent-to-Agent communication standards.
-- **Common Libs**: Shared utilities for the ecosystem.
+### Private Model Infrastructure
+- First-class support for Ollama, vLLM, and local inference
+- Automatic fallback to commercial APIs (OpenAI, Anthropic)
+- Model routing by cost, latency, or quality requirements
+- Run without external API dependencies
 
-### 3. 🛠️ The Tools: `airsmcp`
-**"The Hands"**
-A collection of production-ready MCP servers to give your AI capabilities immediately.
-- **mcp-fs**: Secure, sandboxed filesystem access.
-- *(Growing library of specialized tools)*
-
-### 4. ⚙️ The Runtime: `airssys`
-**"The Foundation"**
-System-level components for secure execution.
-- **OS Layer**: Secure resource management.
-- **Actor Model**: High-concurrency runtime (Erlang-inspired).
-- **WASM**: Sandboxed plugin system.
-
-### 5. 🧠 The Brain: `airsdsp`
-**"The Cognitive Engine"**
-A Rust implementation of the **Demonstrate-Search-Predict** framework, inspired by the groundbreaking work of [DSPy](https://dspy.ai/).
-- **Explicit Control**: Deterministic pipelines, not black boxes.
+### Structured Development Methodology
+- AI-DLC framework for systematic agent development
+- Traceability from business requirements to production code
+- Architectural decision records (ADRs) linked to implementation
+- Human validation gates at each development phase
 
 ---
 
-## 📄 Open Source Promise
+## 🗂️ **Project Organization**
 
-✅ **Forever Free** - Apache 2.0 & MIT licensed  
-✅ **No Vendor Lock-In** - Your code, your control  
-✅ **Privacy First** - No telemetry, local processing  
-✅ **Community Driven** - Transparent governance  
+### [`airsstack`](https://github.com/airsstack/airsstack) - Command-Line Orchestrator
+CLI tool for agent lifecycle management. Build, deploy, configure, and monitor agents across environments. Manages WASM component deployment and model infrastructure.
+
+*Status: In Development*
+
+### [`airsspec`](https://github.com/airsstack/airsspec) - Agent Specification Format
+YAML-based declarative specifications for agent definition. Links to architectural decisions, compiles to WASM, version-controlled.
+
+*Status: Planned*
+
+### [`airsprotocols`](https://github.com/airsstack/airsprotocols) - Protocol Implementations
+Production Rust implementations of agent communication protocols. Includes Model Context Protocol (MCP), OAuth2/API key authentication, and LLM provider abstraction layer.
+
+*Status: MCP Available (v0.2.3)*
+
+### [`airssys`](https://github.com/airsstack/airssys) - System Runtime
+Actor runtime (RT) with supervision trees and WASM component engine. OS abstraction layer (OSL) for cross-platform operations. Benchmarked at ~625ns actor spawn time.
+
+*Status: RT and OSL Available (v0.1.0)*
+
+### [`airsdsp`](https://github.com/airsstack/airsdsp) - Reasoning Pipeline Framework
+Rust implementation of Demonstrate-Search-Predict (DSP) framework from Stanford research (arXiv:2212.14024). Explicit pipeline control for language model and retrieval model composition.
+
+*Status: In Development*
+
+### [`airsdlc`](https://github.com/airsstack/airsdlc) - Development Methodology
+Implementation of AWS AI-DLC (AI-Driven Development Lifecycle) framework. Structured workflow from requirements (PRD) through domain modeling (DAA) to architecture decisions (ADR) and implementation (Bolts).
+
+*Status: Framework Documented*
+
+---
+
+## 🏗️ **Architecture Layers**
+
+```
+┌─────────────────────────────────────┐
+│  airsstack CLI                      │  Orchestration
+│  airsspec Specifications            │  Configuration
+└─────────────┬───────────────────────┘
+              │
+┌─────────────┴───────────────────────┐
+│  airsprotocols                      │  Communication
+│  MCP • A2A • LLM Providers          │  Protocols
+└─────────────┬───────────────────────┘
+              │
+┌─────────────┴───────────────────────┐
+│  airsdsp                            │  Cognitive
+│  Reasoning Pipelines                │  Processing
+└─────────────┬───────────────────────┘
+              │
+┌─────────────┴───────────────────────┐
+│  airssys                            │  System
+│  Actor RT • WASM Engine • OSL       │  Runtime
+└─────────────────────────────────────┘
+```
+
+---
+
+## 📖 **Design Principles**
+
+**Historical Foundation**: The Actor Model was designed for AI systems (Hewitt, 1973). This platform returns actor patterns to their original application domain while incorporating proven reliability patterns from Erlang/OTP.
+
+**Component Isolation**: WebAssembly provides sandboxed execution boundaries with fine-grained capability control. Components cannot escape their security boundaries or access resources without explicit grants.
+
+**Economic Flexibility**: Support for private model deployment (Ollama, vLLM) alongside commercial APIs. Choose based on cost structure, compliance requirements, and deployment constraints.
+
+**Methodological Rigor**: AI-DLC provides structured collaboration between AI generation and human validation. Every production artifact traces back to architectural decisions and business requirements.
+
+**Open Development**: All components developed under Apache 2.0 and MIT licenses. Development process uses AI assistance extensively, following documented AI-DLC methodology.
+
+---
+
+## 🔗 **Resources**
+
+- **Documentation**: [airsstack.github.io](https://airsstack.github.io/)
+- **Discussions**: [GitHub Discussions](https://github.com/orgs/airsstack/discussions)
+- **Issues**: Component-specific issue trackers in each repository
+
+---
+
+## 📄 **License**
+
+All projects dual-licensed under Apache 2.0 and MIT. See individual repositories for details.
 
 ---
 
 <div align="center">
 
-**🤖 Built for Humans • 🔒 Privacy-First • 🦀 Rust-Powered • 🔓 Forever Open**
-
-*Your AI. Your Data. Your Control.*
+**Actor-Based • WASM-Isolated • Model-Agnostic • Open Source**
 
 [Get Started](https://github.com/airsstack/airsstack) • [Documentation](https://airsstack.github.io/) • [Community](https://github.com/orgs/airsstack/discussions)
 
