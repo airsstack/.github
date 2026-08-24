@@ -1,5 +1,7 @@
 # 🦀 AirsStack
 
+# airsstack
+
 **Open-source AI and Rust engineering, organized around products that ship.**
 
 airsstack builds three kinds of thing, and nothing else:
@@ -39,6 +41,41 @@ graph LR
 The current organization inverts the arrow. A product states what it needs; the tools are built to that need and proven by it. A library whose only justification is that another airsstack repository might want it one day does not get built. This is why the roadmap below is short — it lists what has a consumer today, not everything that would be interesting to make.
 
 The earlier work is not deleted. The Claude SDK and the plugin suite carry their full commit history into `claudestacks`; everything that survived the move survived because something needed it.
+
+---
+
+## AI and Rust are the foundation, not the requirement
+
+The name says what airsstack builds *with*: AI-assisted engineering as the method, Rust as the implementation core. It does not say what you must build with in order to use the results.
+
+The distinction is between implementations and interfaces. Implementations here are opinionated and written in Rust — a house choice, made for performance, single-binary distribution, and a strict definition of done. Interfaces are the artifacts designed to travel: specifications, formats, and methodology carry no language requirement at all.
+
+```mermaid
+%% Where the language boundary sits
+graph TD
+    subgraph PORTABLE["Interfaces — travel to any stack"]
+        METH["Methodology<br/>spec-driven, review-gated workflow"]
+        FMT["Knowledge format<br/>portable markdown bundles"]
+        MOD["Module specifications<br/>problem + rigorous spec"]
+    end
+
+    subgraph HOUSE["Implementations — Rust, by choice"]
+        CRATES["Crates, runtimes, CLIs,<br/>and applications"]
+    end
+
+    METH --> CRATES
+    FMT --> CRATES
+    MOD --> CRATES
+    METH -.->|"consumable by"| OTHER["Any other<br/>technology stack"]
+    FMT -.->|"readable by"| OTHER
+    MOD -.->|"implementable in"| OTHER
+```
+
+This is already the case rather than an intention. The methodology plugin suite is language-agnostic by construction: the execution agents take their rules and Definition of Done from whichever guideline skill is installed and degrade gracefully when none is present, so the Rust guidelines are one interchangeable member rather than the premise. A vault written by AirsVault is Open Knowledge Format markdown, readable by any tool in any language that can parse a file.
+
+OpenMod is the fullest expression of the same idea — a module is a problem plus a rigorous specification, held deliberately apart from any single implementation so the same module can be built in Rust and in whatever else a project calls for.
+
+The boundary is stated plainly because it is what keeps the claim honest: specifications, formats, and methodology are meant to be portable. Implementations are not promised in every language, and a request to port one is not automatically in scope.
 
 ---
 
