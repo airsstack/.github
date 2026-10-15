@@ -71,7 +71,7 @@ Libraries and CLIs, ready to consume with or without AI.
 |---|---|---|
 | [**airsl**](https://github.com/airsstack/airsl) | Embedded Lua runtime in Rust. Powers buildl. | Ready |
 | [**buildl**](https://github.com/airsstack/buildl) | Sandboxed, deterministic build system. Build files are written in Lua, evaluated in two phases (declare, then execute), and must declare the authority they need. | In development |
-| [**claudestacks**](https://github.com/airsstack/claudestacks) | The Claude-focused Rust stack: **clauders**, a Rust SDK for Anthropic's Claude; **claudevs**, a deterministic test engine for Claude Code plugins; and a Claude Code plugin suite that packages our spec-driven methodology, including the `claudestacks-sdlc` workflow. | Ready |
+| [**claudestacks**](https://github.com/airsstack/claudestacks) | The Claude-focused Rust stack: [**airsclaude**](https://crates.io/crates/airsclaude), an unofficial Rust SDK for Anthropic's Claude; [**claudevs**](https://crates.io/crates/claudevs) (CLI: [**claudevs-cli**](https://crates.io/crates/claudevs-cli)), a deterministic test engine for Claude Code plugins; and a Claude Code plugin suite that packages our spec-driven methodology, including the `claudestacks-sdlc` workflow. | Ready |
 | [**openrouter-rs**](https://github.com/airsstack/openrouter-rs) | Rust SDK for OpenRouter. One client, many models. | Ready |
 
 ## Products
