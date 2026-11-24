@@ -21,15 +21,16 @@ airsstack has two lanes that stand on one shared foundation.
 flowchart TB
     subgraph A["Run the factory: the agentic SDLC"]
         direction LR
-        SDLC["claudestacks<br/>sdlc workflow, agents, plugins"]
+        CTL["airsstack<br/>controller CLI"]
+        SDLC["agentstacks<br/>agent tool setup: packs + extensions"]
         CVS["claudevs<br/>plugin test engine"]
         BUILD["buildl<br/>sandboxed builds"]
     end
 
     subgraph B["Build agentic software"]
         direction LR
-        CLAUDE["airsclaude<br/>Claude SDK"]
-        OR["openrouter-rs<br/>OpenRouter SDK"]
+        CLAUDE["airsclaude → airsdk-claude<br/>Claude SDK"]
+        OR["openrouter-rs → airsdk-openrouter<br/>OpenRouter SDK"]
         BRIDGE["framework bridges<br/>DSPy, LangGraph, ..."]
     end
 
@@ -42,29 +43,42 @@ flowchart TB
     A --> F
     B --> F
 
-    style SDLC fill:#2e4636,stroke:#7fb589
+    style SDLC fill:#4a3f2a,stroke:#c9a35c
     style CVS fill:#2e4636,stroke:#7fb589
     style CLAUDE fill:#2e4636,stroke:#7fb589
     style OR fill:#2e4636,stroke:#7fb589
     style AIRSL fill:#2e4636,stroke:#7fb589
     style BUILD fill:#4a3f2a,stroke:#c9a35c
+    style CTL fill:#3a3a3a,stroke:#888,stroke-dasharray: 4 4
     style BRIDGE fill:#3a3a3a,stroke:#888,stroke-dasharray: 4 4
     style DEEPER fill:#3a3a3a,stroke:#888,stroke-dasharray: 4 4
 ```
 
-Green is ready, amber is pre-release, and dashed grey is planned.
+Green is ready, amber is pre-release, and dashed grey is planned. An arrow in a name marks a planned move, described under [Where we are heading](#where-we-are-heading).
 
 ## Projects
 
 | Project | Lane | What it is | Status |
 |---|---|---|---|
-| [**claudestacks**](https://github.com/airsstack/claudestacks) | Run the factory | A Claude Code plugin suite for spec-driven, review-gated development (`claudestacks-sdlc`, core agents, journal, language guidelines), plus [**claudevs**](https://crates.io/crates/claudevs), a deterministic test engine for Claude Code plugins. | Ready |
+| **airsstack** | Run the factory | The front-door CLI, in the spirit of kubectl. `airsstack agent …` hands off to agentstacks, and `airsstack tool install airsl` installs and pins airsstack tools under `$HOME/.airsstack`. Later it will manage whole stacks, with tools as dependencies. | Planned |
+| [**agentstacks**](https://github.com/airsstack/agentstacks) | Run the factory | A CLI that sets up agentic coding tools in a project. **Packs** hold tool-neutral content (skills, agents, commands, hooks, rules); **tool extensions** in Lua, sandboxed by airsl, render them in each tool's own format, as a plan you review before it is applied. Claude Code first, OpenCode next. Hosts [**claudevs**](https://crates.io/crates/claudevs), a deterministic test engine for Claude Code setups. | Pre-release |
+| [**claudestacks**](https://github.com/airsstack/claudestacks) | Run the factory | Archived. Its Claude Code plugins became the agentstacks packs and claudevs moved to agentstacks; it still hosts airsclaude until airsdk. | Archived |
 | [**buildl**](https://github.com/airsstack/buildl) | Run the factory | A sandboxed, deterministic build system. Build files are written in Lua and must declare the authority they need. | Pre-release |
-| [**airsclaude**](https://crates.io/crates/airsclaude) | Build agentic software | An unofficial Rust SDK for Anthropic's Claude: the Messages API and the Agent SDK. Lives in claudestacks. | Ready |
-| [**openrouter-rs**](https://github.com/airsstack/openrouter-rs) | Build agentic software | A Rust SDK for OpenRouter. One client, many models. | Ready |
-| [**airsl**](https://github.com/airsstack/airsl) | Foundation | An embedded Lua runtime in Rust. Scripts can touch only what you allow. Powers buildl and the claudestacks hooks. | Ready |
+| [**airsclaude**](https://crates.io/crates/airsclaude) | Build agentic software | An unofficial Rust SDK for Anthropic's Claude: the Messages API and the Agent SDK. Lives in claudestacks; moving to airsdk as `airsdk-claude`. | Ready |
+| [**openrouter-rs**](https://github.com/airsstack/openrouter-rs) | Build agentic software | A Rust SDK for OpenRouter. One client, many models. Moving to airsdk as `airsdk-openrouter`. | Ready |
+| [**airsl**](https://github.com/airsstack/airsl) | Foundation | An embedded Lua runtime in Rust. Scripts can touch only what you allow. Powers buildl and the agentstacks hooks. | Ready |
 | **WASM / VM sandbox** | Foundation | Deeper isolation levels that enforce the same authority model as airsl. | Planned |
 | **Framework bridges** | Build agentic software | Python bindings so DSPy, LangGraph, and other frameworks can call airsstack tools. | Planned |
+
+## Where we are heading
+
+The ecosystem is being regrouped into three repositories, one job each. agentstacks has moved; airsdk has not yet.
+
+| Today | Becomes | Job |
+|---|---|---|
+| (new) | **airsstack** | The controller CLI: one front door for every airsstack tool. |
+| `claudestacks` | **agentstacks** | A CLI that sets up agentic coding tools in a project. **Packs** hold tool-neutral content (skills, agents, commands, hooks, rules); **tool extensions**, written in Lua and sandboxed by airsl, render them in each tool's own format. Every change is a plan you review before it is applied. Claude Code and OpenCode come first, and anyone can write their own packs and extensions. claudevs moves here. |
+| `airsclaude`, `openrouter-rs` | **airsdk** | A collection of thin, provider-specific Rust SDKs for the outside services the factory reaches: model providers first (`airsdk-claude`, `airsdk-openrouter`), cloud and infrastructure providers for the operate station later. An SDK joins only when real work needs it and no maintained Rust SDK already fits. Not a framework. |
 
 ## Safe execution, level by level
 
@@ -87,7 +101,7 @@ isolation depth ─────────────────────�
 
 ## How we build
 
-We build airsstack with airsstack. Every change moves through `claudestacks-sdlc`: **intent → design → plan → execute**. Each stage is a committed file and is gated on the one before it. Review findings that recur are distilled into proposed configuration edits, and failures are triaged into new intents. The workflow follows Anthropic's AI-native SDLC playbook [1] at single-author scale.
+We build airsstack with airsstack. Every change moves through the agentstacks `sdlc` pack: **intent → design → plan → execute**. Each stage is a committed file and is gated on the one before it. Review findings that recur are distilled into proposed configuration edits, and failures are triaged into new intents. The workflow follows Anthropic's AI-native SDLC playbook [1] at single-author scale.
 
 ## Built with airsstack
 
@@ -95,7 +109,7 @@ We build airsstack with airsstack. Every change moves through `claudestacks-sdlc
 
 ## Where we are, honestly
 
-Today airsstack covers the **spec, build, and verify** stations of the factory, plus the language-level sandbox. The **operate** station, the deeper sandbox levels, and the framework bridges are the direction, not yet the inventory. We add a tool when real work needs it, and we label it planned until it ships.
+Today airsstack covers the **spec, build, and verify** stations of the factory, plus the language-level sandbox. The **airsstack** controller, the airsdk regrouping, the **operate** station, the deeper sandbox levels, and the framework bridges are the direction, not yet the inventory. We add a tool when real work needs it, and we label it planned until it ships.
 
 ## Get involved
 
