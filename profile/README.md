@@ -43,7 +43,7 @@ flowchart TB
     A --> F
     B --> F
 
-    style SDLC fill:#4a3f2a,stroke:#c9a35c
+    style SDLC fill:#2e4636,stroke:#7fb589
     style CVS fill:#2e4636,stroke:#7fb589
     style CLAUDE fill:#2e4636,stroke:#7fb589
     style OR fill:#2e4636,stroke:#7fb589
@@ -61,7 +61,7 @@ Green is ready, amber is pre-release, and dashed grey is planned. An arrow in a 
 | Project | Lane | What it is | Status |
 |---|---|---|---|
 | **airsstack** | Run the factory | The front-door CLI, in the spirit of kubectl. `airsstack agent …` hands off to agentstacks, and `airsstack tool install airsl` installs and pins airsstack tools under `$HOME/.airsstack`. Later it will manage whole stacks, with tools as dependencies. | Planned |
-| [**agentstacks**](https://github.com/airsstack/agentstacks) | Run the factory | A CLI that sets up agentic coding tools in a project. **Packs** hold tool-neutral content (skills, agents, commands, hooks, rules); **tool extensions** in Lua, sandboxed by airsl, render them in each tool's own format, as a plan you review before it is applied. Claude Code and OpenCode V2 are supported. Hosts [**claudevs**](https://crates.io/crates/claudevs), a deterministic test engine for Claude Code setups. | Pre-release |
+| [**agentstacks**](https://github.com/airsstack/agentstacks) | Run the factory | A CLI that sets up agentic coding tools in a project. **Packs** hold tool-neutral content (skills, agents, commands, hooks, rules); **tool extensions** in Lua, sandboxed by airsl, render them in each tool's own format, as a plan you review before it is applied. Claude Code and OpenCode V2 are supported. Version 1.0 freezes the extension API at `api = 1`: `agentstacks ext add` adds a community extension and `agentstacks ext test` checks one. Hosts [**claudevs**](https://crates.io/crates/claudevs), a deterministic test engine for Claude Code setups. | Ready |
 | [**claudestacks**](https://github.com/airsstack/claudestacks) | Run the factory | Archived. Its Claude Code plugins became the agentstacks packs and claudevs moved to agentstacks; it still hosts airsclaude until airsdk. | Archived |
 | [**buildl**](https://github.com/airsstack/buildl) | Run the factory | A sandboxed, deterministic build system. Build files are written in Lua and must declare the authority they need. | Pre-release |
 | [**airsclaude**](https://crates.io/crates/airsclaude) | Build agentic software | An unofficial Rust SDK for Anthropic's Claude: the Messages API and the Agent SDK. Lives in claudestacks; moving to airsdk as `airsdk-claude`. | Ready |
