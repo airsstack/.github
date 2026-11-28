@@ -29,7 +29,7 @@ flowchart TB
 
     subgraph B["Build agentic software"]
         direction LR
-        CLAUDE["airsclaude → airsdk-claude<br/>Claude SDK"]
+        CLAUDE["airsdk-claude<br/>Claude SDK"]
         OR["openrouter-rs → airsdk-openrouter<br/>OpenRouter SDK"]
         BRIDGE["framework bridges<br/>DSPy, LangGraph, ..."]
     end
@@ -61,18 +61,18 @@ Green is ready, amber is pre-release, and dashed grey is planned. An arrow in a 
 | Project | Lane | What it is | Status |
 |---|---|---|---|
 | **airsstack** | Run the factory | The front-door CLI, in the spirit of kubectl. `airsstack agent …` hands off to agentstacks, and `airsstack tool install airsl` installs and pins airsstack tools under `$HOME/.airsstack`. Later it will manage whole stacks, with tools as dependencies. | Planned |
-| [**agentstacks**](https://github.com/airsstack/agentstacks) | Run the factory | A CLI that sets up agentic coding tools in a project. **Packs** hold tool-neutral content (skills, agents, commands, hooks, rules); **tool extensions** in Lua, sandboxed by airsl, render them in each tool's own format, as a plan you review before it is applied. Claude Code, OpenCode V2 and Muse Code are supported. Version 1.1 added Muse Code support; 1.2 adds the first-time-setup devex pass (plan summary, `AIRSSTACK_HOME`, doctor runtime checks, generated-file stamps, `init --dry-run`); the extension API stays frozen at `api = 1`: `agentstacks ext add` adds a community extension and `agentstacks ext test` checks one. Hosts [**claudevs**](https://crates.io/crates/claudevs), a deterministic test engine for Claude Code setups. | Ready |
-| [**claudestacks**](https://github.com/airsstack/claudestacks) | Run the factory | Archived. Its Claude Code plugins became the agentstacks packs and claudevs moved to agentstacks; it still hosts airsclaude until airsdk. | Archived |
+| [**agentstacks**](https://github.com/airsstack/agentstacks) | Run the factory | A CLI that sets up agentic coding tools in a project. **Packs** hold tool-neutral content (skills, agents, commands, hooks, rules); **tool extensions** in Lua, sandboxed by airsl, render them in each tool's own format, as a plan you review before it is applied. Claude Code, OpenCode V2 and Muse Code are supported. Version 1.3 releases each extension (`ext-<name>-v*`) and each pack (`packs-<name>-v*`) on its own tag stream; the extension API stays frozen at `api = 1`: `agentstacks ext add` adds a community extension and `agentstacks ext test` checks one. Hosts [**claudevs**](https://crates.io/crates/claudevs), a deterministic test engine for Claude Code setups. | Ready |
+| [**claudestacks**](https://github.com/airsstack/claudestacks) | Run the factory | Archived. Its Claude Code plugins became the agentstacks packs and claudevs moved to agentstacks; airsclaude moved to airsdk as `airsdk-claude` and was retired. | Archived |
 | [**buildl**](https://github.com/airsstack/buildl) | Run the factory | A sandboxed, deterministic build system. Build files are written in Lua and must declare the authority they need. | Pre-release |
-| [**airsclaude**](https://crates.io/crates/airsclaude) | Build agentic software | An unofficial Rust SDK for Anthropic's Claude: the Messages API and the Agent SDK. Lives in claudestacks; moving to airsdk as `airsdk-claude`. | Ready |
-| [**openrouter-rs**](https://github.com/airsstack/openrouter-rs) | Build agentic software | A Rust SDK for OpenRouter. One client, many models. Moving to airsdk as `airsdk-openrouter`. | Ready |
+| [**airsdk-claude**](https://crates.io/crates/airsdk-claude) | Build agentic software | An unofficial Rust SDK for Anthropic's Claude: the Messages API and the Agent SDK. Moved from claudestacks (`airsclaude`, retired) into airsdk as 0.1.0. | Ready |
+| [**openrouter-rs**](https://github.com/airsstack/openrouter-rs) | Build agentic software | A Rust SDK for OpenRouter. One client, many models. Moving to airsdk as `airsdk-openrouter` (the `openrouter-rs` name on crates.io belongs to someone else). | Ready |
 | [**airsl**](https://github.com/airsstack/airsl) | Foundation | An embedded Lua runtime in Rust. Scripts can touch only what you allow. Powers buildl and the agentstacks hooks. | Ready |
 | **WASM / VM sandbox** | Foundation | Deeper isolation levels that enforce the same authority model as airsl. | Planned |
 | **Framework bridges** | Build agentic software | Python bindings so DSPy, LangGraph, and other frameworks can call airsstack tools. | Planned |
 
 ## Where we are heading
 
-The ecosystem is being regrouped into three repositories, one job each. agentstacks has moved; airsdk has not yet.
+The ecosystem is being regrouped into three repositories, one job each. agentstacks has moved; airsdk-claude has moved (airsclaude retired) and airsdk-openrouter has not yet.
 
 | Today | Becomes | Job |
 |---|---|---|
@@ -109,7 +109,7 @@ We build airsstack with airsstack. Every change moves through the agentstacks `s
 
 ## Where we are, honestly
 
-Today airsstack covers the **spec, build, and verify** stations of the factory, plus the language-level sandbox. The **airsstack** controller, the airsdk regrouping, the **operate** station, the deeper sandbox levels, and the framework bridges are the direction, not yet the inventory. We add a tool when real work needs it, and we label it planned until it ships.
+Today airsstack covers the **spec, build, and verify** stations of the factory, plus the language-level sandbox. The **airsstack** controller, the rest of the airsdk regrouping (`airsdk-openrouter`), the **operate** station, the deeper sandbox levels, and the framework bridges are the direction, not yet the inventory. We add a tool when real work needs it, and we label it planned until it ships.
 
 ## Get involved
 
