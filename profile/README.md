@@ -23,7 +23,7 @@ flowchart TB
         direction LR
         CTL["airsstack<br/>controller CLI"]
         SDLC["agentstacks<br/>agent tool setup: packs + extensions"]
-        CVS["claudevs<br/>plugin test engine"]
+        CVS["claudevs<br/>Claude Code test engine"]
         BUILD["buildl<br/>sandboxed builds"]
     end
 
@@ -54,7 +54,7 @@ flowchart TB
     style DEEPER fill:#3a3a3a,stroke:#888,stroke-dasharray: 4 4
 ```
 
-Green is ready, amber is pre-release, and dashed grey is planned. An arrow in a name marks a planned move, described under [Where we are heading](#where-we-are-heading).
+Green is ready, amber is pre-release, and dashed grey is planned.
 
 ## Projects
 
@@ -66,16 +66,6 @@ Green is ready, amber is pre-release, and dashed grey is planned. An arrow in a 
 | [**airsdk**](https://github.com/airsstack/airsdk) | Build agentic software | Thin, provider-specific Rust SDKs for the outside services the factory reaches, starting with model providers. `airsdk-claude` 0.1.0 is published; OpenRouter support is moving in from `openrouter-rs`. | Pre-release |
 | [**openrouter-rs**](https://github.com/airsstack/openrouter-rs) | Build agentic software | A Rust SDK for OpenRouter. One client, many models. Moving to airsdk as `airsdk-openrouter` (the `openrouter-rs` name on crates.io belongs to someone else). | Ready |
 | [**airsl**](https://github.com/airsstack/airsl) | Foundation | An embedded Lua runtime in Rust. Scripts can touch only what you allow. Powers buildl and the agentstacks hooks. | Ready |
-
-## Where we are heading
-
-The ecosystem is being regrouped into three repositories, one job each. agentstacks has moved; airsdk-claude has moved (airsclaude retired) and airsdk-openrouter has not yet.
-
-| Today | Becomes | Job |
-|---|---|---|
-| (new) | **airsstack** | The controller CLI: one front door for every airsstack tool. |
-| `claudestacks` | **agentstacks** | A CLI that sets up agentic coding tools in a project. **Packs** hold tool-neutral content (skills, agents, commands, hooks, rules); **tool extensions**, written in Lua and sandboxed by airsl, render them in each tool's own format. Every change is a plan you review before it is applied. Claude Code and OpenCode come first, and anyone can write their own packs and extensions. claudevs lives here too. |
-| `airsclaude`, `openrouter-rs` | **airsdk** | A collection of thin, provider-specific Rust SDKs for the outside services the factory reaches: model providers first (`airsdk-claude`, `airsdk-openrouter`), cloud and infrastructure providers for the operate station later. An SDK joins only when real work needs it and no maintained Rust SDK already fits. Not a framework. |
 
 ## Safe execution, level by level
 
